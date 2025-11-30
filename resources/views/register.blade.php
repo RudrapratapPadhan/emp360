@@ -49,6 +49,13 @@
                         </div>
 
                         <div class="col-md-4">
+                            <label class="form-label">Enter your gender</label>
+                            <input class="form-control border-2 border-primary" type="radio" name="gender" value="male" required> Male
+                            <input class="form-control border-2 border-primary" type="radio" name="gender" value="female" required> Female
+                            <p id="gender-error"></p>
+                        </div>
+
+                        <div class="col-md-4">
                             <label class="form-label">Enter your DOB</label>
                             <input class="form-control border-2 border-primary" type="date" name="dob" required> 
                         </div>

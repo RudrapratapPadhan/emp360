@@ -24,6 +24,7 @@ class User extends Authenticatable
         'role',
         'mobile',
         'age',
+        'gender',
         'dob',
         'father_name',
         'mother_name',
