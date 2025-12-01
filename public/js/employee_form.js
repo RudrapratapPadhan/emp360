@@ -1,10 +1,11 @@
-function validateRegistrationForm(e) {
+function validateEmployeeForm(e) {
     e.preventDefault();
     let email = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
-    let confirmPassword = document.getElementById('confirm_password').value;
     let mobile = document.getElementById('mobile').value;
     let age = document.getElementById('age').value;
+    let password = document.getElementById('password');
+    let confirmPassword = document.getElementById('confirm_password');
+
     let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     let mobilePattern = /^\+?[0-9]{10,15}$/;
@@ -16,20 +17,6 @@ function validateRegistrationForm(e) {
         isValid = false;
     } else {
         document.getElementById('email-error').innerText = "";
-    }
-
-    if (!passwordPattern.test(password)) {
-        document.getElementById('password-error').innerText = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.";
-        isValid = false;
-    } else {
-        document.getElementById('password-error').innerText = "";
-    }
-
-    if (password !== confirmPassword) {
-        document.getElementById('confirm-password-error').innerText = "Passwords do not match.";
-        isValid = false;
-    } else {
-        document.getElementById('confirm-password-error').innerText = "";
     }
 
     if (!mobilePattern.test(mobile)) {
@@ -46,8 +33,24 @@ function validateRegistrationForm(e) {
         document.getElementById('age-error').innerText = "";
     }
 
+    if (password && password.value) {
+        if (!passwordPattern.test(password.value)) {
+            document.getElementById('password-error').innerText = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.";
+            isValid = false;
+        } else {
+            document.getElementById('password-error').innerText = "";
+        }
+
+        if (confirmPassword && password.value !== confirmPassword.value) {
+            document.getElementById('confirm-password-error').innerText = "Passwords do not match.";
+            isValid = false;
+        } else {
+            document.getElementById('confirm-password-error').innerText = "";
+        }
+    }
+
     if (isValid) {
-        document.getElementById('registration-form').submit();
+        e.target.submit();
     }
 
     return false;

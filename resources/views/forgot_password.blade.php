@@ -11,7 +11,7 @@ Forgot Password
                     <div class="text-center mb-4">
                         <h2 class="fw-bold text-primary">Forgot Password</h2>
                         <p class="text-muted">Enter your email to reset your password</p>
-                    </div>  
+                    </div>
                     <form action="/forgot-password" method="post">
                         @csrf
                         

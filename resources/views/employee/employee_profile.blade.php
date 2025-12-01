@@ -8,8 +8,6 @@ My Profile
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            
-            <!-- Profile Header Card -->
             <div class="card shadow mb-4">
                 <div class="card-header bg-primary text-white">
                     <h4 class="mb-0">
@@ -33,7 +31,6 @@ My Profile
                             </p>
                         </div>
 
-                        <!-- Profile Information -->
                         <div class="col-md-9">
                             <h5 class="text-primary mb-3">Personal Information</h5>
                             
@@ -109,7 +106,6 @@ My Profile
                 </div>
             </div>
 
-            <!-- Family Information Card -->
             <div class="card shadow mb-4">
                 <div class="card-header bg-success text-white">
                     <h5 class="mb-0">
@@ -130,7 +126,6 @@ My Profile
                 </div>
             </div>
 
-            <!-- Address Information Card -->
             <div class="card shadow mb-4">
                 <div class="card-header bg-info text-white">
                     <h5 class="mb-0">
@@ -155,7 +150,6 @@ My Profile
                 </div>
             </div>
 
-            <!-- Task Statistics Card (For Employees) -->
             @if($employee->role == 'employee')
             <div class="card shadow mb-4">
                 <div class="card-header bg-warning text-dark">
@@ -202,7 +196,6 @@ My Profile
             </div>
             @endif
 
-            <!-- Action Buttons -->
             <div class="card shadow">
                 <div class="card-body">
                     <div class="d-grid gap-2">
@@ -237,7 +230,6 @@ My Profile
     </div>
 </div>
 
-<!-- Change Password Modal -->
 <div class="modal fade" id="changePasswordModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">

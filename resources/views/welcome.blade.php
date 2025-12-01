@@ -6,13 +6,11 @@ Welcome
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-10">
-            
             <div class="text-center mb-5">
                 <h1 class="display-4 fw-bold text-primary">Welcome to Employee Management System</h1>
                 <p class="lead text-muted">Streamline your workforce management with our comprehensive EMS solution</p>
             </div>
 
-         
             <div class="row g-4 mb-5">
                 <div class="col-md-4">
                     <div class="card h-100 text-center shadow-sm">
@@ -61,7 +59,6 @@ Welcome
                 </div>
             </div>
 
-            <!-- Call to Action -->
             <div class="card bg-primary text-white shadow-lg">
                 <div class="card-body text-center py-5">
                     <h3 class="mb-3">Get Started Today</h3>
@@ -73,7 +70,6 @@ Welcome
                 </div>
             </div>
 
-            <!-- Info Section -->
             <div class="mt-5 text-center">
                 <p class="text-muted">
                     <small>&copy; 2025 Employee Management System. All rights reserved.</small>

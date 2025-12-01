@@ -1,5 +1,3 @@
-<!-- filepath: resources/views/emp_create.blade.php -->
-
 @extends('base')
 
 @section('mainblock')
@@ -17,7 +15,7 @@
                     <div class="alert alert-danger">{{ $error }}</div>
                 @endif
                 
-                <form action="/employees/create" method="post">
+                <form action="/employees/create" method="post" id="employee-form">
                     @csrf
                     <div class="row g-3">
                         <div class="col-md-4">
@@ -26,15 +24,18 @@
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Email</label>
-                            <input class="form-control" type="email" name="email" required>
+                            <input class="form-control" type="email" name="email" id="email" required>
+                            <p id="email-error" class="text-danger small"></p>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Mobile</label>
-                            <input class="form-control" type="tel" name="mobile" required>
+                            <input class="form-control" type="tel" name="mobile" id="mobile" required>
+                            <p id="mobile-error" class="text-danger small"></p>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Age</label>
-                            <input class="form-control" type="number" name="age" required>
+                            <input class="form-control" type="number" name="age" id="age" required>
+                            <p id="age-error" class="text-danger small"></p>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">DOB</label>
@@ -58,11 +59,14 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Password</label>
-                            <input class="form-control" type="password" name="password" minlength="8" required>
+                            <input class="form-control" type="password" name="password" id="password" minlength="8" required>
+                            <small class="text-muted">Min 8 chars with uppercase, lowercase, number & special char</small>
+                            <p id="password-error" class="text-danger small"></p>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Confirm Password</label>
-                            <input class="form-control" type="password" name="confirm_password" required>
+                            <input class="form-control" type="password" name="confirm_password" id="confirm_password" required>
+                            <p id="confirm-password-error" class="text-danger small"></p>
                         </div>
                     </div>
 
@@ -75,4 +79,9 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('js/employee_form.js') }}"></script>
+<script>
+document.getElementById('employee-form').addEventListener('submit', validateEmployeeForm);
+</script>
 @endsection

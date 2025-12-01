@@ -1,5 +1,3 @@
-<!-- filepath: e:\employee_management_system\resources\views\admin_dashboard.blade.php -->
-
 @extends('base')
 
 @section('title')
@@ -16,9 +14,7 @@ Admin
         </form>
     </div>
 
-    <!-- Statistics Cards Row -->
     <div class="row g-4 mb-4">
-        <!-- Total Employees Card -->
         <div class="col-md-6 col-lg-3">
             <div class="card text-white bg-primary h-100">
                 <div class="card-body text-center">
@@ -32,7 +28,6 @@ Admin
             </div>
         </div>
 
-        <!-- Total Tasks Card -->
         <div class="col-md-6 col-lg-3">
             <div class="card text-white bg-success h-100">
                 <div class="card-body text-center">
@@ -46,7 +41,6 @@ Admin
             </div>
         </div>
 
-        <!-- Pending Tasks Card -->
         <div class="col-md-6 col-lg-3">
             <div class="card text-white bg-warning h-100">
                 <div class="card-body text-center">
@@ -60,7 +54,6 @@ Admin
             </div>
         </div>
 
-        <!-- Completed Tasks Card -->
         <div class="col-md-6 col-lg-3">
             <div class="card text-white bg-info h-100">
                 <div class="card-body text-center">
@@ -75,9 +68,7 @@ Admin
         </div>
     </div>
 
-    <!-- Action Cards Row -->
     <div class="row g-4">
-        <!-- Manage Employees Card -->
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-header bg-primary text-white">
@@ -94,7 +85,6 @@ Admin
             </div>
         </div>
 
-        <!-- Task Management Card -->
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-header bg-success text-white">
@@ -112,7 +102,6 @@ Admin
             </div>
         </div>
 
-        <!-- Reports Card -->
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-header bg-info text-white">

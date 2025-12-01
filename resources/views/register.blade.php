@@ -26,43 +26,42 @@
                     <div class="row g-3">
                         <div class="col-md-4">
                             <label class="form-label">Enter your name</label>
-                            <input class="form-control border border-2 border-primary" type="text" name="name" required> 
-                        
+                            <input class="form-control border border-2 border-primary" type="text" name="name" required>
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Enter your email</label>
-                            <input class="form-control border-2 border-primary" type="email" name="email" required>
-                            <p id="email-error"></p> 
+                            <input class="form-control border-2 border-primary" type="email" name="email" id="email" required>
+                            <p id="email-error" class="text-danger small"></p>
                         </div>
 
                         <div class="col-md-4">
-                            <label class="formlet-label">Enter your mobile number</label>
-                            <input class="form-control border-2 border-primary" type="tel" name="mobile" required> 
-                            <p id="mobile-error"></p>
+                            <label class="form-label">Enter your mobile number</label>
+                            <input class="form-control border-2 border-primary" type="tel" name="mobile" id="mobile" required>
+                            <p id="mobile-error" class="text-danger small"></p>
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Enter your age</label>
-                            <input class="form-control border-2 border-primary" type="number" name="age" required> 
-                            <p id="age-error"></p>
+                            <input class="form-control border-2 border-primary" type="number" name="age" id="age" required>
+                            <p id="age-error" class="text-danger small"></p>
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label">Enter your gender</label>
-                            <input class="form-control border-2 border-primary" type="radio" name="gender" value="male" required> Male
-                            <input class="form-control border-2 border-primary" type="radio" name="gender" value="female" required> Female
+                            <label class="form-label">Enter your gender</label> <br>
+                            <input type="radio" name="gender" value="male" required> Male
+                            <input type="radio" name="gender" value="female" required> Female
                             <p id="gender-error"></p>
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Enter your DOB</label>
-                            <input class="form-control border-2 border-primary" type="date" name="dob" required> 
+                            <input class="form-control border-2 border-primary" type="date" name="dob" required>
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Enter your father name</label>
-                            <input class="form-control border-2 border-primary" type="text" name="fname" required> 
+                            <input class="form-control border-2 border-primary" type="text" name="fname" required>
                         </div>
 
                         <div class="col-md-4">
@@ -82,20 +81,20 @@
 
                         <div class="col-md-4">
                             <label class="form-label">Password</label>
-                            <input class="form-control border-2 border-primary" type="password" name="password" minlength="8" required>
-                            <small class="text-muted">Minimum 8 characters</small>
-                            <p id="password-error"></p>
+                            <input class="form-control border-2 border-primary" type="password" name="password" id="password" minlength="8" required>
+                            <small class="text-muted">Min 8 chars with uppercase, lowercase, number & special char</small>
+                            <p id="password-error" class="text-danger small"></p>
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Confirm Password</label>
-                            <input class="form-control border-2 border-primary" type="password" name="confirm_password" required>
-                            <p id="confirm-password-error"></p>
+                            <input class="form-control border-2 border-primary" type="password" name="confirm_password" id="confirm_password" required>
+                            <p id="confirm-password-error" class="text-danger small"></p>
                         </div>
                     </div>
 
                     <div class="text-center mt-4">
-                        <button class="btn btn-primary btn-lg px-5" type="submit">Register</button> 
+                        <button class="btn btn-primary btn-lg px-5" type="submit">Register</button>
                         <div class="mt-2">Already registered? <a href="/login">Login here</a></div>
                     </div>
                 </form>
@@ -105,4 +104,7 @@
 </div>
 
 <script src="{{ asset('js/register.js') }}"></script>
+<script>
+document.getElementById('registration-form').addEventListener('submit', validateRegistrationForm);
+</script>
 @endsection

@@ -1,5 +1,3 @@
-<!-- filepath: e:\employee_management_system\resources\views\employee\employee_update_task.blade.php -->
-
 @extends('base')
 
 @section('title')
@@ -15,8 +13,6 @@ Update Task Status
                     <h4 class="mb-0">Update Task Status</h4>
                 </div>
                 <div class="card-body">
-                    
-                    <!-- Task Details -->
                     <div class="bg-light p-3 rounded mb-4">
                         <h5 class="text-primary mb-3">Task Details</h5>
                         
@@ -71,7 +67,6 @@ Update Task Status
 
                     <hr>
 
-                    <!-- Update Form -->
                     <h5 class="text-primary mb-3">Change Task Status</h5>
                     
                     <form action="/employee/task/update/{{ $task->id }}" method="POST">

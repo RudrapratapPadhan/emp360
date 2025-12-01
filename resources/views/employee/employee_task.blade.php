@@ -23,7 +23,6 @@ My Tasks
         </div>
     @endif
 
-
     <div class="row mb-4">
         <div class="col-md-3">
             <div class="card text-white bg-secondary">
@@ -59,7 +58,7 @@ My Tasks
         </div>
     </div>
 
-     <div class="card">
+    <div class="card">
         <div class="card-header bg-primary text-white">
             <h5>All My Tasks</h5>
         </div>

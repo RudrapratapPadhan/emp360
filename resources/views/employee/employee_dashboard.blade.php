@@ -9,7 +9,6 @@ Employee
     <h1 class="mb-4">Employee Dashboard</h1>
     
     <div class="row g-4">
-        <!-- Card 1: Employee Details -->
         <div class="col-md-6">
             <div class="card h-100 text-bg-success">
                 <div class="card-header">
@@ -30,7 +29,6 @@ Employee
             </div>
         </div>
 
-        <!-- Card 2: Task Summary -->
         <div class="col-md-6">
             <div class="card h-100 text-bg-info">
                 <div class="card-header">
@@ -49,6 +47,5 @@ Employee
 </div>
 
 <script src="{{ asset('js/emp_dashboard.js') }}"></script>
-
 
 @endsection

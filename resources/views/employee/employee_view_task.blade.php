@@ -1,5 +1,3 @@
-<!-- filepath: e:\employee_management_system\resources\views\employee_view_task.blade.php -->
-
 @extends('base')
 
 @section('title')
@@ -15,7 +13,6 @@ View Task Details
                     <h4>Task Details</h4>
                 </div>
                 <div class="card-body">
-                    
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="fw-bold">Task ID:</label>

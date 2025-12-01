@@ -12,7 +12,7 @@ class TaskController extends Controller
 {
     function listTasks(){
         $tasks = Task::with(['user','creator'])->orderBy('created_at','desc')->paginate(15);
-        return view('tasks.list_all', compact('tasks'));   
+        return view('tasks.list_all', compact('tasks'));
     }
 
     function createTasks(){
@@ -25,16 +25,16 @@ class TaskController extends Controller
         $error = '';
         if(request()->isMethod('POST')){
             try{
-            $task = new Task;
-            $task->title = request('title');
-            $task->description = request('description');
-            $task->user_id = request('employee_id');
-            $task->created_by = Auth::id();
-            $task->priority = request('priority');
-            $task->status = 'pending';
-            $task->due_date = request('due_date');
-            $task->save();
-            return redirect('tasks')->with('msg','Task created successfully!');
+                $task = new Task;
+                $task->title = request('title');
+                $task->description = request('description');
+                $task->user_id = request('employee_id');
+                $task->created_by = Auth::id();
+                $task->priority = request('priority');
+                $task->status = 'pending';
+                $task->due_date = request('due_date');
+                $task->save();
+                return redirect('tasks')->with('msg','Task created successfully!');
             }catch(Exception $e){
                 $error = $e->getMessage();
                 $employees = User::where('role','employee')->get();
@@ -43,17 +43,12 @@ class TaskController extends Controller
 
             $employees = User::where('role','employee')->get();
             return view('tasks.create', compact('msg','error','employees'));
-            
-            
-            
         }
     }
-
 
     function editTasks($id){
         $task = Task::find($id);
         $employees = User::where('role','employee')->get();
-
         $msg = '';
         $error = '';
         return view('tasks.update', compact('task','employees','msg','error'));
@@ -93,7 +88,6 @@ class TaskController extends Controller
         $employees = User::where('role','employee')->get();
         return view('tasks.update', compact('task','employees','msg','error'));
     }
-
 
     function deleteTasks($id){
         $task = Task::find($id);

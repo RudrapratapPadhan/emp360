@@ -13,16 +13,18 @@ Login
                         <p class="text-muted">Login to Employee Management System</p>
                     </div>
 
-                    <form action="/login" method="post" autocomplete="off">
+                    <form action="/login" method="post" id="login-form" autocomplete="off">
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email Address</label>
                             <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter your email" required>
+                            <p id="email-error" class="text-danger small"></p>
                         </div>
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Enter your password" required>
+                            <p id="password-error" class="text-danger small"></p>
                         </div>
 
                         <div class="mb-3 form-check">
@@ -50,4 +52,9 @@ Login
         </div>
     </div>
 </div>
+
+<script src="{{ asset('js/login.js') }}"></script>
+<script>
+document.getElementById('login-form').addEventListener('submit', validateLoginForm);
+</script>
 @endsection

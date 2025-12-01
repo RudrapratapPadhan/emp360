@@ -9,7 +9,6 @@
     <link href="{{ asset('bootstrap/bootstrap.min.css') }}" rel="stylesheet">
 </head>
 <body>
-    
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="/"><img src="{{ asset('images/emp360.png') }}" height="40" width="50"></a>
@@ -24,7 +23,6 @@
         
         @auth
           @if(Auth::user()->role === 'admin')
-            <!-- Admin Only Menu -->
             <li class="nav-item">
               <a class="nav-link" href="/admin/dashboard">Dashboard</a>
             </li>
@@ -42,12 +40,11 @@
                 Tasks
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/tasks/assign">Assign Task</a></li>
+                <li><a class="dropdown-item" href="/tasks/create">Assign Task</a></li>
                 <li><a class="dropdown-item" href="/tasks">View All Tasks</a></li>
               </ul>
             </li>
           @elseif(Auth::user()->role === 'employee')
-            <!-- Employee Only Menu -->
             <li class="nav-item">
               <a class="nav-link" href="/employee/dashboard">Dashboard</a>
             </li>
@@ -55,8 +52,7 @@
               <a class="nav-link" href="/employee/tasks">My Tasks</a>
             </li>
           @endif
-          
-          <!-- Common Menu for Logged In Users -->
+
           <li class="nav-item dropdown ms-auto">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{ Auth::user()->name }}
@@ -75,7 +71,6 @@
             </ul>
           </li>
         @else
-          <!-- Guest Menu (First-time Visitors) -->
           <li class="nav-item ms-auto">
             <a class="nav-link" href="/login">Login</a>
           </li>
@@ -88,7 +83,6 @@
   </div>
 </nav>
 
-<!-- Display Session Messages -->
 @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
         {{ session('success') }}

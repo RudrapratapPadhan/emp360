@@ -30,23 +30,17 @@ class EmployeesController extends Controller
         $error = '';
 
         if (request()->isMethod('POST')) {
-
             try {
                 $password = request('password');
                 $confirm_password = request('confirm_password');
 
-                // Validate password match
                 if ($password !== $confirm_password) {
                     $error = 'Password and Confirm Password do not match.';
-
                     return view('register', compact('msg', 'error'));
                 }
 
-                // Hash password
                 $hashedPassword = Hash::make($password);
 
-                // Save to users table - SECURE: Always set role to 'employee'
-                // Admins must be created manually via seeder or by existing admin
                 $user = new User;
                 $user->name = request('name');
                 $user->email = request('email');
@@ -58,7 +52,7 @@ class EmployeesController extends Controller
                 $user->permanent_address = request('paddress');
                 $user->current_address = request('caddress');
                 $user->password = Hash::make($password);
-                $user->role = 'employee';  // Default role
+                $user->role = 'employee';
                 $user->save();
 
                 return redirect('/login')->with('success', 'Registration successful! Please login.');
@@ -96,9 +90,7 @@ class EmployeesController extends Controller
                     return redirect('/employee/dashboard');
                 }
 
-                // Fallback if role is not set
                 Auth::logout();
-
                 return back()->with('error', 'Invalid user role');
             }
 
@@ -130,10 +122,7 @@ class EmployeesController extends Controller
 
     public function admin_dashboard()
     {
-        // Get total count efficiently
         $totalEmployees = User::where('role', 'employee')->count();
-
-        // Paginate employees (only load when needed)
         $employee = User::where('role', 'employee')
             ->select('id', 'name', 'email', 'mobile', 'age', 'dob', 'father_name')
             ->paginate(10);
@@ -152,13 +141,11 @@ class EmployeesController extends Controller
             ->paginate(15);
 
         return view('admin.employees_list', compact('employee'));
-
     }
 
     public function employee_dashboard()
     {
         $employee = Auth::user();
-        // $task = Task::where('user_id', $employee->id)->get();
         $pendingTasks = Task::where('user_id', $employee->id)->where('status', 'pending')->count();
         $completedTasks = Task::where('user_id', $employee->id)->where('status', 'completed')->count();
         $thisMonthTasksAssigned = Task::where('user_id', $employee->id)->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
@@ -212,7 +199,6 @@ class EmployeesController extends Controller
                 $user->save();
 
                 $msg = 'Employee created successfully!';
-
                 return redirect('admin/dashboard')->with('success', $msg);
 
             } catch (Exception $e) {
@@ -240,10 +226,9 @@ class EmployeesController extends Controller
     {
         $msg = '';
         $error = '';
-
         $emp = User::find($id);
 
-        if (! $emp) {
+        if (!$emp) {
             return redirect('admin/dashboard')->with('error', 'Employee not found');
         }
 
@@ -259,14 +244,12 @@ class EmployeesController extends Controller
                 $emp->permanent_address = request('paddress');
                 $emp->current_address = request('caddress');
 
-                // Update password only if provided
                 if (request('password')) {
                     $password = request('password');
                     $confirm_password = request('confirm_password');
 
                     if ($password !== $confirm_password) {
                         $error = 'Passwords do not match.';
-
                         return view('admin.emp_update', compact('emp', 'msg', 'error'));
                     }
 
@@ -274,9 +257,7 @@ class EmployeesController extends Controller
                 }
 
                 $emp->save();
-
                 $msg = 'Employee updated successfully!';
-
                 return redirect('admin/dashboard')->with('success', $msg);
 
             } catch (Exception $e) {
@@ -291,17 +272,15 @@ class EmployeesController extends Controller
     {
         $emp = User::find($id);
 
-        if (! $emp) {
+        if (!$emp) {
             return redirect('admin/dashboard')->with('error', 'Employee not found');
         }
 
-        // Prevent deleting yourself
         if ($emp->id === Auth::id()) {
             return redirect('admin/dashboard')->with('error', 'You cannot delete yourself!');
         }
 
         $emp->delete();
-
         return redirect('admin/dashboard')->with('success', 'Employee deleted successfully');
     }
 
@@ -326,7 +305,7 @@ class EmployeesController extends Controller
             return redirect('employee/tasks')->with('error', 'Task Not Found');
         }
 
-        if ($task->user_id != Auth::id()) {
+        if($task->user_id != Auth::id()) {
             return redirect('employee/tasks')->with('error', 'You cannot update this task');
         }
 
@@ -376,12 +355,10 @@ class EmployeesController extends Controller
         return view('employee.employee_view_task', compact('task'));
     }
 
-    // Show employee profile
     public function showProfile()
     {
         $employee = Auth::user();
 
-        // Get task statistics for employees
         if ($employee->role == 'employee') {
             $totalTasks = Task::where('user_id', $employee->id)->count();
             $pendingTasks = Task::where('user_id', $employee->id)->where('status', 'pending')->count();
@@ -394,31 +371,29 @@ class EmployeesController extends Controller
         return view('employee.employee_profile', compact('employee'));
     }
 
-   
-      public function changePassword()
-     {
-       if (request()->isMethod('POST')) {
-        $user = Auth::user();
+    public function changePassword()
+    {
+        if (request()->isMethod('POST')) {
+            $user = Auth::user();
 
-        if (! Hash::check(request('current_password'), $user->password)) {
-            return redirect()->back()->with('error', 'Current password is incorrect');
+            if (!Hash::check(request('current_password'), $user->password)) {
+                return redirect()->back()->with('error', 'Current password is incorrect');
+            }
+
+            if (request('new_password') !== request('confirm_password')) {
+                return redirect()->back()->with('error', 'New passwords do not match');
+            }
+
+            if (strlen(request('new_password')) < 8) {
+                return redirect()->back()->with('error', 'Password must be at least 8 characters');
+            }
+
+            $user->password = Hash::make(request('new_password'));
+            $user->save();
+
+            return redirect()->back()->with('success', 'Password changed successfully! 🎉');
         }
 
-        if (request('new_password') !== request('confirm_password')) {
-            return redirect()->back()->with('error', 'New passwords do not match');
-        }
-
-        if (strlen(request('new_password')) < 8) {
-            return redirect()->back()->with('error', 'Password must be at least 8 characters');
-        }
-
-        $user->password = Hash::make(request('new_password'));
-        $user->save();
-
-     
-        return redirect()->back()->with('success', 'Password changed successfully! 🎉');
-     }
-
-    return redirect('employee/profile');
-   }
+        return redirect('employee/profile');
+    }
 }

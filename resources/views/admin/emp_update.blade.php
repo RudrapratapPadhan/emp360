@@ -1,5 +1,3 @@
-<!-- filepath: resources/views/emp_update.blade.php -->
-
 @extends('base')
 
 @section('mainblock')
